@@ -36,7 +36,7 @@ function PlaylistsLink({ serieId, serie, season }: { serieId: string, serie: Ser
         {formats.map(format => (
             <>
                 {'['}
-                <Link key={format} href={`/playlist/series/${serieId}/${season.season_number}.${format}`}>{format}</Link>
+                <Link key={format} href={`/playlists/series/${serieId}/${season.season_number}.${format}`}>{format}</Link>
                 {']'}
             </>
         ))}
