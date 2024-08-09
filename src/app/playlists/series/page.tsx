@@ -3,9 +3,6 @@ import { xCodeStreamApi } from '@/lib/xcode-stream-api'
 
 export default async function Series({ searchParams }: any) { 
     const series = await xCodeStreamApi.getSeries(searchParams.category)
-
-    series.sort((a, b) => a.name?.localeCompare(b.name))
-    
     return (
         <main>
             <h1>Series</h1>

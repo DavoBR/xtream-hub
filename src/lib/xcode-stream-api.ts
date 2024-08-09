@@ -202,7 +202,9 @@ export class XCodeStreamApi {
     async getVodStreams(categoryId: number | undefined = undefined): Promise<VodStream[]> {
         const queryParams = ['action=get_vod_streams', categoryId ? `category_id=${categoryId}` : '']
         const response = await fetch(`${this.playerApiUrl}&${queryParams.join('&')}`)
-        return await response.json()
+        const streams = await response.json() as VodStream[]
+        streams.sort((a, b) => a.name?.localeCompare(b.name))
+        return streams
     }
 
     async getVodInfo(id: string): Promise<VodInfo> {
@@ -213,7 +215,9 @@ export class XCodeStreamApi {
     async getSeries(categoryId: number | undefined = undefined) : Promise<Serie[]> {
         const queryParams = ['action=get_series', categoryId ? `category_id=${categoryId}` : '']
         const response = await fetch(`${this.playerApiUrl}&${queryParams.join('&')}`)
-        return await response.json()
+        const series = await response.json() as Serie[]
+        series.sort((a, b) => a.name?.localeCompare(b.name))
+        return series
     }
 
     async getSerieInfo(id: string) : Promise<SerieInfo> {
@@ -224,7 +228,9 @@ export class XCodeStreamApi {
     async getLiveStreams(categoryId: number | undefined = undefined) : Promise<LiveStream[]> {
         const queryParams = ['action=get_live_streams', categoryId ? `category_id=${categoryId}` : '']
         const response = await fetch(`${this.playerApiUrl}&${queryParams.join('&')}`)
-        return await response.json()
+        const streams = await response.json() as LiveStream[]
+        streams.sort((a, b) => a.name?.localeCompare(b.name))
+        return streams
     }
 
     async getStreamUrl(type: StreamType, id: string) : Promise<string | null> {
